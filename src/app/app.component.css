@@ -1,0 +1,26 @@
+.checkbox-list{
+    display: flex;
+}
+.colors-container {
+    display: flex;
+    flex-direction: column;
+}
+.blue {
+    background-color: cornflowerblue;
+}
+.purple {
+    background-color: purple;
+}
+.chocolate {
+    background-color: chocolate;
+}
+
+
+/*  */
+.block {
+    display: inline-flex;
+    width: 40%;
+    height: 300px;
+    
+    margin: 5px 5px;
+}

@@ -8,6 +8,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'drgndrp';
 
+  ngOnInit(){
+    let savedItems = localStorage.getItem('listOfItems');
+    let savedBlocks = localStorage.getItem('listOfBlocks')
+
+    savedItems == null ? this.listOfItems = [] :this.listOfItems = JSON.parse(savedItems)
+    savedBlocks == null ? this.listOfItems = [] :this.listOfBlocks = JSON.parse(savedBlocks)
+  }
+
   listOfItems = [
     {
       id:1,
@@ -24,6 +32,7 @@ export class AppComponent {
       isChecked: true,
       name: 'show chocolate color'
     },
+    
   ];
 
   listOfBlocks = [
@@ -47,9 +56,17 @@ export class AppComponent {
   changeBlockState(item: any) {
     let selectedId = item.id;
     let selectedBlock: any = this.listOfBlocks.find(item => item.id === selectedId);
-    
     item.isChecked = !item.isChecked;
     selectedBlock.isShown = item.isChecked;
+    
+    localStorage.setItem('listOfItems', JSON.stringify(this.listOfItems));
+    
+  }
+
+  sorted(event: any) {
+    this.listOfBlocks = event.currentOrder;
+    console.log(this.listOfBlocks)
+    localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
   }
 }
 

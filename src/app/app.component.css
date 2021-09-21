@@ -1,29 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+
 .checkbox-list{
     display: flex;
+    margin: 10px;
+    font-size: 15px;
 }
+
 .colors-container {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+}
+.block-container {
+    display: inline-flex;
+}
+.block {
+    /* width: 30%; */
+    height: 300px;
+    margin: 5px 5px;
+    border-radius: 10px;
 }
 .blue {
     background-color: cornflowerblue;
-    width: 100%;
+    width: 500px;
 }
 .purple {
     background-color: purple;
-    width: 50%;
+    width: 400px;
 }
 .chocolate {
     background-color: chocolate;
-    width: 50%;
+    width: 800px;
 }
 
 
-/*  */
-.block {
-    display: inline-block;
-    height: 300px;
-    
-    margin: 5px 5px;
-}
+

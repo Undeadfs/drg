@@ -6,12 +6,9 @@
   {{item.name}}
 </div>
 <div class="colors-container">
-  <div *ngFor="let block of listOfBlocks" ngSortgridItem
-  [ngSortGridItems]="listOfBlocks">
-    <div
-      class="block"
-      [ngClass]="block.className"
-      *ngIf="block.isShown">
+  <div class="block-container" *ngFor="let block of listOfBlocks" ngSortgridItem
+  [ngSortGridItems]="listOfBlocks" (sorted)="sorted($event)">
+    <div class="block" *ngIf="block.isShown" [ngClass]="block.className">
     </div>
   </div>
 </div>

@@ -6,11 +6,12 @@
   {{item.name}}
 </div>
 <div class="colors-container">
-  <ng-container *ngFor="let block of listOfBlocks">
+  <div *ngFor="let block of listOfBlocks" ngSortgridItem
+  [ngSortGridItems]="listOfBlocks">
     <div
       class="block"
       [ngClass]="block.className"
       *ngIf="block.isShown">
     </div>
-  </ng-container>
+  </div>
 </div>

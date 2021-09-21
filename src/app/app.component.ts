@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { GridStack } from 'gridstack';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

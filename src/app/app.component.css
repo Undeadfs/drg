@@ -3,23 +3,26 @@
 }
 .colors-container {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
 }
 .blue {
     background-color: cornflowerblue;
+    width: 100%;
 }
 .purple {
     background-color: purple;
+    width: 50%;
 }
 .chocolate {
     background-color: chocolate;
+    width: 50%;
 }
 
 
 /*  */
 .block {
-    display: inline-flex;
-    width: 40%;
+    display: inline-block;
     height: 300px;
     
     margin: 5px 5px;

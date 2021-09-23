@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'drgndrp';
 
+  sortingEnabled: boolean = false;
+
   ngOnInit(){
     let savedItems = localStorage.getItem('listOfItems');
     let savedBlocks = localStorage.getItem('listOfBlocks')
@@ -72,6 +74,10 @@ export class AppComponent {
       this.listOfBlocks[index].isShown = !this.listOfBlocks[index].isShown
       localStorage.setItem('listOfItems', JSON.stringify(this.listOfItems));
       localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
-    } 
+    }
+
+    toggleSorting(){
+      this.sortingEnabled = !this.sortingEnabled
+    }
 }
 

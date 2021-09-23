@@ -1,4 +1,5 @@
-<div *ngFor = "let item of listOfItems" class="checkbox-list">
+<button class="btn">Edit charts</button>
+<div *ngFor = "let item of listOfItems;let i=index" class="checkbox-list">
   <input
     (change)="changeBlockState(item)"
     type="checkbox"
@@ -6,9 +7,10 @@
   {{item.name}}
 </div>
 <div class="colors-container">
-  <div class="block-container" *ngFor="let block of listOfBlocks" ngSortgridItem
+  <div class="block-container" *ngFor="let block of listOfBlocks; let i = index" ngSortgridItem
   [ngSortGridItems]="listOfBlocks" (sorted)="sorted($event)">
     <div class="block" *ngIf="block.isShown" [ngClass]="block.className">
+      <button (click)="deleteItem(i)" class = "trash fas fa-trash-alt"></button>
     </div>
   </div>
 </div>

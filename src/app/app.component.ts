@@ -11,9 +11,8 @@ export class AppComponent {
   ngOnInit(){
     let savedItems = localStorage.getItem('listOfItems');
     let savedBlocks = localStorage.getItem('listOfBlocks')
-
-    savedItems == null ? this.listOfItems = [] :this.listOfItems = JSON.parse(savedItems)
-    savedBlocks == null ? this.listOfItems = [] :this.listOfBlocks = JSON.parse(savedBlocks)
+    savedItems == null ? this.listOfItems : this.listOfItems = JSON.parse(savedItems)
+    savedBlocks == null ? this.listOfBlocks : this.listOfBlocks = JSON.parse(savedBlocks)
   }
 
   listOfItems = [
@@ -52,21 +51,27 @@ export class AppComponent {
       isShown: true
     }
   ];
+  
 
-  changeBlockState(item: any) {
+  changeBlockState(item:any) {
     let selectedId = item.id;
     let selectedBlock: any = this.listOfBlocks.find(item => item.id === selectedId);
     item.isChecked = !item.isChecked;
     selectedBlock.isShown = item.isChecked;
-    
+    localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
     localStorage.setItem('listOfItems', JSON.stringify(this.listOfItems));
-    
   }
 
   sorted(event: any) {
     this.listOfBlocks = event.currentOrder;
-    console.log(this.listOfBlocks)
     localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
   }
+
+  deleteItem(index:any){
+      this.listOfItems[index].isChecked = !this.listOfItems[index].isChecked
+      this.listOfBlocks[index].isShown = !this.listOfBlocks[index].isShown
+      localStorage.setItem('listOfItems', JSON.stringify(this.listOfItems));
+      localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
+    } 
 }
 

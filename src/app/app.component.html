@@ -5,23 +5,24 @@
     <ng-multiselect-dropdown
     [placeholder]="'select color'"
     [settings]="dropdownSettings"
-    [data]="dropdownList"
+    [data]="listOfItems"
     [(ngModel)]="selectedItems"
     (onSelect)="onItemSelect($event)"
+    (onDeSelect)="onItemDeSelect($event)"
     (onSelectAll)="onSelectAll($event)"
   >
   </ng-multiselect-dropdown>
   </div>
     
-  
-  <div 
+  <!-- <div 
     *ngFor = "let item of listOfItems;let i=index" class="checkbox-list">
     <input
-      (change)="changeBlockState(item)"
+    (change)="changeBlockState(item)"
       type="checkbox"
-      [checked]="item.isChecked">
+      [checked]="item.isChecked"> 
     {{item.name}}
-  </div>
+  </div> -->
+  
 </ng-container>
 
 <div class="colors-container">

@@ -11,54 +11,42 @@ export class AppComponent implements OnInit {
   sortingEnabled: boolean = false;
 
   ngOnInit(){
-    let savedItems = localStorage.getItem('dropdownList');
+    let savedItems = localStorage.getItem('listOfItems');
     let savedBlocks = localStorage.getItem('listOfBlocks')
-    savedItems == null ? this.dropdownList : this.dropdownList = JSON.parse(savedItems)
+    savedItems == null ? this.listOfItems : this.listOfItems = JSON.parse(savedItems)
     savedBlocks == null ? this.listOfBlocks : this.listOfBlocks = JSON.parse(savedBlocks)
   }
 
   listOfItems = [
     {
       id:1,
-      isChecked: true,
       name: 'blue'
     },
     {
       id:2,
-      isChecked: true,
-      name: 'show purple color'
-    },
-    {
-      id:3,
-      isChecked: true,
-      name: 'show chocolate color'
-    },
-    
-  ];
-
-  dropdownList = [
-    {
-      id:1,
-      isChecked: true,
-      name: 'blue'
-    },
-    {
-      id:2,
-      isChecked: true,
       name: 'purple'
     },
     {
       id:3,
-      isChecked: true,
       name: 'chocolate'
-    },
-
+    }
   ];
 
-    selectedItems :any = [
-     
-    ]
-    
+  selectedItems = [
+    {
+      id:1,
+      name: 'blue'
+    },
+    {
+      id:2,
+      name: 'purple'
+    },
+    {
+      id:3,
+      name: 'chocolate'
+    }
+  ];
+
     dropdownSettings : IDropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -69,8 +57,20 @@ export class AppComponent implements OnInit {
       allowSearchFilter: true
     };
     
-    onItemSelect(item: any) {
-      console.log(this.selectedItems);
+    onItemSelect(item:any) {
+      let selectedId = item.id;
+      let selectedBlock: any = this.listOfBlocks.find(item => item.id === selectedId);
+      selectedBlock.isShown = true;
+      console.log(item);
+
+    }
+
+    onItemDeSelect(item:any) {
+      let selectedId = item.id;
+      let selectedBlock: any = this.listOfBlocks.find(item => item.id === selectedId);
+      selectedBlock.isShown = false;
+      console.log(item);
+
     }
     onSelectAll(items: any) {
       console.log(items);
@@ -96,12 +96,12 @@ export class AppComponent implements OnInit {
   ];
 
   changeBlockState(item:any) {
-    let selectedId = item.id;
-    let selectedBlock: any = this.listOfBlocks.find(item => item.id === selectedId);
-    item.isChecked = !item.isChecked;
-    selectedBlock.isShown = item.isChecked;
-    localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
-    localStorage.setItem('listOfItems', JSON.stringify(this.listOfItems));
+    // let selectedId = item.id;
+    // let selectedBlock: any = this.listOfBlocks.find(item => item.id === selectedId);
+    // item.isChecked = !item.isChecked;
+    // selectedBlock.isShown = item.isChecked;
+    // localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
+    // localStorage.setItem('listOfItems', JSON.stringify(this.listOfItems));
   }
 
   sorted(event: any) {
@@ -110,10 +110,10 @@ export class AppComponent implements OnInit {
   }
 
   deleteItem(index:any){
-      this.listOfItems[index].isChecked = !this.listOfItems[index].isChecked
-      this.listOfBlocks[index].isShown = !this.listOfBlocks[index].isShown
-      localStorage.setItem('listOfItems', JSON.stringify(this.listOfItems));
-      localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
+      // this.listOfItems[index].isChecked = !this.listOfItems[index].isChecked
+      // this.listOfBlocks[index].isShown = !this.listOfBlocks[index].isShown
+      // localStorage.setItem('listOfItems', JSON.stringify(this.listOfItems));
+      // localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
     }
 
     btnval = "Edit charts"

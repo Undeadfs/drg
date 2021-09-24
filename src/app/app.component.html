@@ -1,11 +1,14 @@
-<button class="btn" (click)="toggleSorting()">Edit charts</button>
-<div *ngFor = "let item of listOfItems;let i=index" class="checkbox-list">
-  <input
-    (change)="changeBlockState(item)"
-    type="checkbox"
-    [checked]="item.isChecked">
-  {{item.name}}
-</div>
+<button class="btn" (click)="toggleSorting()">{{btnval}}</button>
+<ng-container *ngIf="sortingEnabled">
+  <div 
+    *ngFor = "let item of listOfItems;let i=index" class="checkbox-list">
+    <input
+      (change)="changeBlockState(item)"
+      type="checkbox"
+      [checked]="item.isChecked">
+    {{item.name}}
+  </div>
+</ng-container>
 <div class="colors-container">
   <ng-container *ngIf="sortingEnabled">
     <div

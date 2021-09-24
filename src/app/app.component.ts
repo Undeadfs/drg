@@ -76,8 +76,15 @@ export class AppComponent {
       localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
     }
 
+    btnval = "Edit charts"
+
     toggleSorting(){
       this.sortingEnabled = !this.sortingEnabled
+      if(this.btnval=="Edit charts"){
+        this.btnval = "Edit mode"
+      } else {
+        this.btnval = "Edit charts"
+      }
     }
 }
 

@@ -1,8 +1,9 @@
 <button class="btn" (click)="toggleSorting()">{{btnval}}</button>
+
 <ng-container *ngIf="sortingEnabled">
-  <div>
+  <div class="container">
     <ng-multiselect-dropdown
-    [placeholder]="'custom placeholder'"
+    [placeholder]="'select color'"
     [settings]="dropdownSettings"
     [data]="dropdownList"
     [(ngModel)]="selectedItems"
@@ -11,6 +12,7 @@
   >
   </ng-multiselect-dropdown>
   </div>
+    
   
   <div 
     *ngFor = "let item of listOfItems;let i=index" class="checkbox-list">

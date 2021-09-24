@@ -11,9 +11,9 @@ export class AppComponent implements OnInit {
   sortingEnabled: boolean = false;
 
   ngOnInit(){
-    let savedItems = localStorage.getItem('listOfItems');
+    let savedItems = localStorage.getItem('dropdownList');
     let savedBlocks = localStorage.getItem('listOfBlocks')
-    savedItems == null ? this.listOfItems : this.listOfItems = JSON.parse(savedItems)
+    savedItems == null ? this.dropdownList : this.dropdownList = JSON.parse(savedItems)
     savedBlocks == null ? this.listOfBlocks : this.listOfBlocks = JSON.parse(savedBlocks)
   }
 
@@ -52,13 +52,14 @@ export class AppComponent implements OnInit {
       isChecked: true,
       name: 'chocolate'
     },
+
   ];
 
-    selectedItems = [
+    selectedItems :any = [
      
     ]
     
-    dropdownSettings:IDropdownSettings = {
+    dropdownSettings : IDropdownSettings = {
       singleSelection: false,
       idField: 'id',
       textField: 'name',
@@ -67,12 +68,15 @@ export class AppComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+    
     onItemSelect(item: any) {
-      console.log(item);
+      console.log(this.selectedItems);
     }
     onSelectAll(items: any) {
       console.log(items);
     }
+
+
   listOfBlocks = [
     {
       id: 1,

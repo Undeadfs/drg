@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+.container {
+    margin: 10px;
+    width: 300px;
+}
+
 .checkbox-list{
     display: flex;
     margin: 10px;

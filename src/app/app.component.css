@@ -1,4 +1,4 @@
-@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
 
 *{
     box-sizing: border-box;
@@ -41,14 +41,10 @@
 }
 
 .trash {
-    width: 30px;
-    border: none;
-    border-radius: 2px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 20px;
 
-    padding: 2px;
-    margin: 5px;
+    padding: 10px;
 }
 .trash:hover{
     color: rgba(153, 8, 8);

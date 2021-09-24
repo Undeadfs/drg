@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'drgndrp';
-
   sortingEnabled: boolean = false;
 
   ngOnInit(){
@@ -21,7 +21,7 @@ export class AppComponent {
     {
       id:1,
       isChecked: true,
-      name: 'show blue color'
+      name: 'blue'
     },
     {
       id:2,
@@ -36,6 +36,43 @@ export class AppComponent {
     
   ];
 
+  dropdownList = [
+    {
+      id:1,
+      isChecked: true,
+      name: 'blue'
+    },
+    {
+      id:2,
+      isChecked: true,
+      name: 'purple'
+    },
+    {
+      id:3,
+      isChecked: true,
+      name: 'chocolate'
+    },
+  ];
+
+    selectedItems = [
+     
+    ]
+    
+    dropdownSettings:IDropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+    onItemSelect(item: any) {
+      console.log(item);
+    }
+    onSelectAll(items: any) {
+      console.log(items);
+    }
   listOfBlocks = [
     {
       id: 1,
@@ -53,7 +90,6 @@ export class AppComponent {
       isShown: true
     }
   ];
-  
 
   changeBlockState(item:any) {
     let selectedId = item.id;

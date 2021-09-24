@@ -1,5 +1,17 @@
 <button class="btn" (click)="toggleSorting()">{{btnval}}</button>
 <ng-container *ngIf="sortingEnabled">
+  <div>
+    <ng-multiselect-dropdown
+    [placeholder]="'custom placeholder'"
+    [settings]="dropdownSettings"
+    [data]="dropdownList"
+    [(ngModel)]="selectedItems"
+    (onSelect)="onItemSelect($event)"
+    (onSelectAll)="onSelectAll($event)"
+  >
+  </ng-multiselect-dropdown>
+  </div>
+  
   <div 
     *ngFor = "let item of listOfItems;let i=index" class="checkbox-list">
     <input
@@ -9,6 +21,7 @@
     {{item.name}}
   </div>
 </ng-container>
+
 <div class="colors-container">
   <ng-container *ngIf="sortingEnabled">
     <div
@@ -18,7 +31,7 @@
       [ngSortGridItems]="listOfBlocks"
       (sorted)="sorted($event)">
       <div class="block" *ngIf="block.isShown" [ngClass]="block.className">
-        <button (click)="deleteItem(i)" class = "trash fas fa-trash-alt"></button>
+        <i (click)="deleteItem(i)" class = "trash fa fa-close"></i>
       </div>
     </div>
   </ng-container>
@@ -31,3 +44,5 @@
     </div>
   </ng-container>
 </div>
+
+

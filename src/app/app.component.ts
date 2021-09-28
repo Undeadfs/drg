@@ -9,11 +9,12 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 export class AppComponent implements OnInit {
   title = 'drgndrp';
   sortingEnabled: boolean = false;
+  btnval = "Edit charts";
 
   ngOnInit(){
-    let savedItems = localStorage.getItem('listOfItems');
-    let savedBlocks = localStorage.getItem('listOfBlocks')
-    savedItems == null ? this.listOfItems : this.listOfItems = JSON.parse(savedItems)
+    let savedItems = localStorage.getItem('selectedItems');
+    let savedBlocks = localStorage.getItem('listOfBlocks');
+    savedItems == null ? this.selectedItems : this.selectedItems = JSON.parse(savedItems)
     savedBlocks == null ? this.listOfBlocks : this.listOfBlocks = JSON.parse(savedBlocks)
   }
 
@@ -32,23 +33,13 @@ export class AppComponent implements OnInit {
     }
   ];
 
-  selectedItems = [
-    {
-      id:1,
-      name: 'blue'
-    },
-    {
-      id:2,
-      name: 'purple'
-    },
-    {
-      id:3,
-      name: 'chocolate'
-    }
+  selectedItems:any[]= [
+    
   ];
 
     dropdownSettings : IDropdownSettings = {
       singleSelection: false,
+      enableCheckAll : false,
       idField: 'id',
       textField: 'name',
       selectAllText: 'Select All',
@@ -61,17 +52,18 @@ export class AppComponent implements OnInit {
       let selectedId = item.id;
       let selectedBlock: any = this.listOfBlocks.find(item => item.id === selectedId);
       selectedBlock.isShown = true;
-      console.log(item);
-
+      localStorage.setItem('selectedItems', JSON.stringify(this.selectedItems));
+      localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
     }
 
     onItemDeSelect(item:any) {
       let selectedId = item.id;
       let selectedBlock: any = this.listOfBlocks.find(item => item.id === selectedId);
       selectedBlock.isShown = false;
-      console.log(item);
-
+      localStorage.setItem('selectedItems', JSON.stringify(this.selectedItems));
+      localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
     }
+    
     onSelectAll(items: any) {
       console.log(items);
     }
@@ -109,14 +101,18 @@ export class AppComponent implements OnInit {
     localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
   }
 
-  deleteItem(index:any){
-      // this.listOfItems[index].isChecked = !this.listOfItems[index].isChecked
-      // this.listOfBlocks[index].isShown = !this.listOfBlocks[index].isShown
-      // localStorage.setItem('listOfItems', JSON.stringify(this.listOfItems));
-      // localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
+  deleteItem(index:any, blockId: number){
+      this.listOfBlocks[index].isShown = !this.listOfBlocks[index].isShown;
+      localStorage.setItem('listOfBlocks', JSON.stringify(this.listOfBlocks));
+
+      let indexOfSelectedItem = this.selectedItems.findIndex(item => item.id === blockId);
+      console.log(indexOfSelectedItem);
+      this.selectedItems.splice(indexOfSelectedItem, 1);
+      this.selectedItems = this.selectedItems.slice();
+      localStorage.setItem('selectedItems', JSON.stringify(this.selectedItems));
     }
 
-    btnval = "Edit charts"
+    
 
     toggleSorting(){
       this.sortingEnabled = !this.sortingEnabled

@@ -1,17 +1,20 @@
 <button class="btn" (click)="toggleSorting()">{{btnval}}</button>
 
 <ng-container *ngIf="sortingEnabled">
-  <div class="container">
-    <ng-multiselect-dropdown
-    [placeholder]="'select color'"
-    [settings]="dropdownSettings"
-    [data]="listOfItems"
-    [(ngModel)]="selectedItems"
-    (onSelect)="onItemSelect($event)"
-    (onDeSelect)="onItemDeSelect($event)"
-    (onSelectAll)="onSelectAll($event)"
-  >
-  </ng-multiselect-dropdown>
+  <div class="flex-cont">
+    <div class="container">
+      <ng-multiselect-dropdown
+      [placeholder]="'select color'"
+      [settings]="dropdownSettings"
+      [data]="listOfItems"
+      [(ngModel)]="selectedItems"
+      (onSelect)="onItemSelect($event)"
+      (onDeSelect)="onItemDeSelect($event)"
+      (onSelectAll)="onSelectAll($event)"
+    >
+    </ng-multiselect-dropdown>
+  </div>
+  
   </div>
     
   <!-- <div 
@@ -34,7 +37,7 @@
       [ngSortGridItems]="listOfBlocks"
       (sorted)="sorted($event)">
       <div class="block" *ngIf="block.isShown" [ngClass]="block.className">
-        <i (click)="deleteItem(i)" class = "trash fa fa-close"></i>
+        <i (click)="deleteItem(i, block.id)" class = "trash fa fa-close"></i>
       </div>
     </div>
   </ng-container>
